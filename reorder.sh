@@ -12,7 +12,28 @@ for file in $(ls -tr | grep -v reorder.sh | grep -v README); do
     [ -f $file ] && mv $file $(printf "%02d" $i2).png && let i2=i2+1
 done
 
-echo '## wallpapers' > README.md
+echo $'# Wallpapers
+
+## How to use reorder.sh
+
+### On Windows
+
+- dep: Git Bash
+
+open Git bash and then:
+
+```bash
+./reorder.sh
+```
+
+### On Linux
+
+```bash
+./reorder.sh
+```
+
+## Preview' > README.md
+
 for file in $(ls | grep -v reorder.sh | grep -v README); do
     echo "$file  " >> README.md
     echo "![$file]($file)" >> README.md

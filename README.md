@@ -1,4 +1,24 @@
-## wallpapers
+# Wallpapers
+
+## How to use reorder.sh
+
+### On Windows
+
+- dep: Git Bash
+
+open Git bash and then:
+
+```bash
+./reorder.sh
+```
+
+### On Linux
+
+```bash
+./reorder.sh
+```
+
+## Preview
 01.png  
 ![01.png](01.png)
 02.png  
