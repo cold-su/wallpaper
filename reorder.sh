@@ -9,7 +9,7 @@ done
 let i2=1
 
 for file in $(ls -tr | grep -v reorder.sh | grep -v README); do
-    [ -f $file ] && mv $file $(printf "%02d" $i2).png && let i2=i2+1
+    [ -f $file ] && mv $file $(printf "%03d" $i2).png && let i2=i2+1
 done
 
 let sum=i1-1;
