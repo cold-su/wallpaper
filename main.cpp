@@ -1,21 +1,23 @@
 #include <bits/stdc++.h> // remove this after it is finished.
 
-bool is_sorted(std::fstream& file);
+std::pair<bool, std::vector<int>> is_sorted(std::fstream& file);
 
 int main() {
 	std::fstream f;
 	f.open("temp.txt", std::ios::in);
 
-	if (is_sorted(f)) {
+	auto [is, nums] = is_sorted(f);
+
+	if (is) {
 		return 0;
 	}
 
 	return 0;
 }
 
-bool is_sorted(std::fstream& file) {
+std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 	std::string s;
-	std::vector<int> nums;
+	std::vector<int> vec;
 	while (getline(file, s)) {
 		if (s == "") {
 			continue;
@@ -29,8 +31,10 @@ bool is_sorted(std::fstream& file) {
 			new_string += i;
 		}
 
-		nums.push_back(std::stoi(new_string));
+		vec.push_back(std::stoi(new_string));
 	}
 
-	return std::ranges::is_sorted(nums);
+	bool __is_sorted = std::ranges::is_sorted(vec);
+
+	return { __is_sorted, vec };
 }
