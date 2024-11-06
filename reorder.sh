@@ -1,3 +1,6 @@
 #!/bin/bash
 
-echo $(ls | grep -v reorder.sh | grep -v README) >> temp
+for file_name in $(ls -tr | grep 'png');
+do
+	echo $file_name >> temp.txt
+done
