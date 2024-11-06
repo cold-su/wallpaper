@@ -17,6 +17,9 @@ bool is_sorted(std::fstream& file) {
 	std::string s;
 	std::vector<int> nums;
 	while (getline(file, s)) {
+		if (s == "") {
+			continue;
+		}
 		std::string new_string;
 
 		for (char i : s) {
