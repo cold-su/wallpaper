@@ -8,3 +8,6 @@ logs/
 *.log
 **/dump.rdb
 **/.DS_Store
+*.exe
+*.o
+*.txt
