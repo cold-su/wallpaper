@@ -1,5 +1,7 @@
 #include <bits/stdc++.h> // remove this after it is finished.
+#define println(...) puts(std::format(__VA_ARGS__).c_str()) // for debug
 
+// todo: 这些声明到时候放到头文件里面
 std::pair<bool, std::vector<int>> is_sorted(std::fstream& file);
 
 int main() {
@@ -12,9 +14,12 @@ int main() {
 		return 0;
 	}
 
+	println("Is sorted!");
+
 	return 0;
 }
 
+// todo: move all the functions to another file
 std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 	std::string s;
 	std::vector<int> vec;
