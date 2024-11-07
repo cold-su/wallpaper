@@ -23,12 +23,14 @@ int main() {
 std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 	std::string s;
 	std::vector<int> vec;
+	std::vector<std::string> unnamed_files;
 	while (getline(file, s)) {
 		if (s == "") {
 			continue;
 		}
 		std::string new_string;
 
+		bool named = true;
 		for (char i : s) {
 			if (i == '.') {
 				break;
@@ -36,7 +38,12 @@ std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 			new_string += i;
 		}
 
-		vec.push_back(std::stoi(new_string));
+		if (!named) {
+			unnamed_files.push_back(new_string);
+		} else {
+			vec.push_back(std::stoi(new_string) - 1);
+		}
+
 	}
 
 	bool __is_sorted = std::ranges::is_sorted(vec);
