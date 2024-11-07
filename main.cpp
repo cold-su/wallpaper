@@ -36,6 +36,9 @@ std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 			if (i == '.') {
 				break;
 			}
+			if (!('0' <= i && i <= '9')) {
+				named = false;
+			}
 			new_string += i;
 		}
 
