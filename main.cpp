@@ -11,10 +11,11 @@ int main() {
 	auto [is, nums] = is_sorted(f);
 
 	if (is) {
+		println("Is sorted!");
 		return 0;
 	}
 
-	println("Is sorted!");
+	println("aaa");
 
 	return 0;
 }
@@ -46,7 +47,20 @@ std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 
 	}
 
-	bool __is_sorted = std::ranges::is_sorted(vec);
+	auto check = [] (std::vector<int> nums) -> std::pair<bool, int> {
+		int n = nums.size();
+		int p = 0;
+		for (int i = 0; i < n; i++) {
+			p += p == nums[i];
+		}
+		p--;
 
-	return { __is_sorted, vec };
+		return {p == nums[n - 1], p};
+	};
+
+	std::ranges::sort(vec);
+	auto [__is_sorted, pos] = check(vec); //todo: pos 是第一个出现的空位
+	bool havs_unnamed_files = unnamed_files.size() > 0;
+
+	return { __is_sorted, vec };// todo: update this
 }
