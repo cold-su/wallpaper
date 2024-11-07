@@ -2,26 +2,35 @@
 #define println(...) puts(std::format(__VA_ARGS__).c_str()) // for debugging
 
 // todo: 这些声明到时候放到头文件里面
-std::pair<bool, std::vector<int>> is_sorted(std::fstream& file);
+std::tuple<bool, std::vector<std::string>, int, int> is_sorted(std::fstream& file);
 
 int main() {
 	std::fstream f;
 	f.open("temp.txt", std::ios::in);
 
-	auto [is, nums] = is_sorted(f);
+	auto [is, files, pos, n] = is_sorted(f);
+	bool have_unnamed_files = files.size() > 0;
 
-	if (is) {
-		println("Is sorted!");
-		return 0;
+	std::vector<std::pair<std::string, int>> queue;
+	if (have_unnamed_files) {
+		if (is) {
+			std::fstream __f;
+			__f.open("__temp.txt", std::ios::out);
+			for (int i = 0; i < files.size(); i++) {
+				std::string file_name = files[i];
+				__f << std::format("{}.png {}.png\n", file_name, i + n + 1);
+			}
+			__f.close();
+		}
+		// todo
 	}
 
-	println("aaa");
-
+	f.close();
 	return 0;
 }
 
-// todo: move all the functions to another file
-std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
+// todo: 拆分这个功能
+std::tuple<bool, std::vector<std::string>, int, int> is_sorted(std::fstream& file) {
 	std::string s;
 	std::vector<int> vec;
 	std::vector<std::string> unnamed_files;
@@ -63,7 +72,6 @@ std::pair<bool, std::vector<int>> is_sorted(std::fstream& file) {
 
 	std::ranges::sort(vec);
 	auto [__is_sorted, pos] = check(vec); //todo: pos 是第一个出现的空位
-	bool havs_unnamed_files = unnamed_files.size() > 0;
 
-	return { __is_sorted, vec };// todo: update this
+	return { __is_sorted, unnamed_files, pos, vec.size() };
 }
