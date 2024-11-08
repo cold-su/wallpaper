@@ -11,7 +11,6 @@ int main() {
 	auto [is, files, pos, n] = is_sorted(f);
 	bool have_unnamed_files = files.size() > 0;
 
-	std::vector<std::pair<std::string, int>> queue;
 	if (have_unnamed_files) {
 		if (is) {
 			std::fstream __f;
