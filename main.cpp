@@ -44,11 +44,12 @@ std::tuple<bool, std::vector<std::string>, std::map<int, int>, int> get_infos(st
 
 		std::string new_string;
 		bool named = true;
+		int cnt = 0;
 		for (char i : s) {
 			if (i == '.') {
 				break;
 			}
-			if (!('0' <= i && i <= '9')) {
+			if (!('0' <= i && i <= '9') || cnt++ >= 6) {
 				named = false;
 			}
 			new_string += i;
